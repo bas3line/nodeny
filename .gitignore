@@ -1,0 +1,24 @@
+# Dependencies and builds
+node_modules
+dist
+dist-ssr
+*.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Editors and OS
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.sw?
+
+# Wrangler and secrets
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example

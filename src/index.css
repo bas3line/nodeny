@@ -1,0 +1,195 @@
+@import "tailwindcss";
+
+/* Paper and ink, an ultramarine ramp from navy to lavender for surfaces,
+   and a yellow marker as the one warm note. */
+:root {
+  color-scheme: light;
+  --paper: #ffffff;
+  --paper-2: #f6f6f8;
+  --ink: #0b0b0f;
+  --ink-2: #55555f;
+  --ink-3: #8f8f99;
+  --rule: #e6e6eb;
+  --accent: #3a2eff;
+  --accent-soft: #f0efff;
+  --accent-mid: #c8c4ff;
+  --marker: #ffe45c;
+  --brand: #2c21e8;
+  --brand-900: #0c0848;
+  --brand-800: #1a1199;
+  --brand-600: #4136ff;
+  --brand-300: #9a94ff;
+  --tint: #f4f3ff;
+}
+
+@theme inline {
+  --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Bricolage Grotesque', var(--font-sans);
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-rule: var(--rule);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-mid: var(--accent-mid);
+  --color-marker: var(--marker);
+  --color-brand: var(--brand);
+  --color-brand-900: var(--brand-900);
+  --color-brand-800: var(--brand-800);
+  --color-brand-600: var(--brand-600);
+  --color-brand-300: var(--brand-300);
+  --color-tint: var(--tint);
+
+  --radius-sm: 0.3rem;
+  --radius-md: 0.4rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.7rem;
+  --radius-2xl: 0.9rem;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--rule);
+  }
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+  }
+  ::selection {
+    background: var(--marker);
+    color: var(--ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .display {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-variation-settings: 'opsz' 96, 'wdth' 100;
+    letter-spacing: -0.022em;
+    line-height: 1;
+  }
+  .heading {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-variation-settings: 'opsz' 72, 'wdth' 100;
+    letter-spacing: -0.018em;
+    line-height: 1.06;
+  }
+
+  /* Hollow-dot paper: the ground every illustration sits on. */
+  .dot-paper-soft {
+    background-image: radial-gradient(circle at center, transparent 1.5px, rgb(58 46 255 / 0.13) 1.6px, rgb(58 46 255 / 0.13) 2.2px, transparent 2.3px);
+    background-size: 11px 11px;
+  }
+  .dot-frame {
+    border: 3px dotted var(--accent);
+  }
+
+  /* Hatched mat around an illustration, the way a print gets framed. */
+  .hatch {
+    padding: 7px;
+    border: 1px solid var(--rule);
+    border-radius: 18px;
+    background-image: repeating-linear-gradient(-45deg, var(--rule) 0 1px, transparent 1px 7px);
+  }
+
+  .range {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 28px;
+    background: transparent;
+    cursor: pointer;
+  }
+  .range::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 99px;
+    background: linear-gradient(to right, var(--accent) var(--fill), var(--rule) var(--fill));
+  }
+  .range::-moz-range-track {
+    height: 4px;
+    border-radius: 99px;
+    background: linear-gradient(to right, var(--accent) var(--fill), var(--rule) var(--fill));
+  }
+  .range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    margin-top: -8px;
+    border-radius: 99px;
+    background: var(--paper);
+    border: 2px solid var(--accent);
+    box-shadow: 0 2px 6px rgb(58 46 255 / 0.25);
+  }
+  .range::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 99px;
+    background: var(--paper);
+    border: 2px solid var(--accent);
+  }
+
+  .caret::after {
+    content: '';
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    margin-left: 2px;
+    vertical-align: -0.2em;
+    background: var(--accent);
+    animation: caret 1s steps(1) infinite;
+  }
+  @keyframes caret { 50% { opacity: 0; } }
+
+  .intro-ring {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: intro-ring 0.6s cubic-bezier(0.6, 0, 0.2, 1) 0.05s forwards;
+  }
+  @keyframes intro-ring { to { stroke-dashoffset: 0; } }
+
+  /* The footer frieze's height; everything in it is sized off this. */
+  .frieze {
+    --fh: clamp(190px, 25vw, 380px);
+  }
+  @keyframes hop {
+    0% { transform: translateY(0); }
+    35% { transform: translateY(-24px) rotate(-2deg); }
+    100% { transform: translateY(0); }
+  }
+  @keyframes shake {
+    20% { transform: translateX(-6px) rotate(-2deg); }
+    40% { transform: translateX(5px) rotate(1.5deg); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(2px); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .caret::after { animation: none; }
+}

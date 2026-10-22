@@ -1,0 +1,27 @@
+name: Bug
+description: Something on the page looks or behaves wrong.
+labels: [bug]
+body:
+  - type: input
+    id: where
+    attributes:
+      label: Where
+      description: The section of the page.
+      placeholder: the hero, the footer frieze, the pricing estimator
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what you saw. A screenshot helps.
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and screen
+      description: Browser and version, OS, and the window size.
+      placeholder: Safari 19 on macOS 27, 1440 x 900
+    validations:
+      required: true
