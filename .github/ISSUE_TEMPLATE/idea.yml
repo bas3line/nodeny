@@ -1,0 +1,11 @@
+name: Idea
+description: Something the page should show or do.
+labels: [idea]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: The idea
+      description: What you'd like to see, and where on the page. A sketch or reference helps.
+    validations:
+      required: true
